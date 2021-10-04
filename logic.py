@@ -98,7 +98,7 @@ def choose_action_input(data, player):
         return place_the_wall_action(data, player)
     else:
         wrong_action_message()
-        choose_action_input(data, player)
+        return choose_action_input(data, player)
 
 
 def start_game():
