@@ -38,11 +38,11 @@ def move_player_action(data, player):
             return data
         else:
             wrong_action_message()
-            move_player_action(data, player)
+            return move_player_action(data, player)
 
     except Exception:
         wrong_action_message()
-        move_player_action(data, player)
+        return move_player_action(data, player)
 
 
 def place_the_wall_action(data, player):
@@ -74,16 +74,16 @@ def place_the_wall_action(data, player):
                         return data['data']
                     else:
                         wrong_action_message()
-                        place_the_wall_action(data, player)
+                        return place_the_wall_action(data, player)
                 else:
                     wrong_action_message()
-                    place_the_wall_action(data, player)
+                    return place_the_wall_action(data, player)
             except Exception as e:
                 wrong_action_message()
-                place_the_wall_action(data, player)
+                return place_the_wall_action(data, player)
         else:
             wrong_action_message()
-            place_the_wall_action(data, player)
+            return place_the_wall_action(data, player)
 
 
 def choose_action_input(data, player):
@@ -98,7 +98,7 @@ def choose_action_input(data, player):
         return place_the_wall_action(data, player)
     else:
         wrong_action_message()
-        choose_action_input(data, player)
+        return choose_action_input(data, player)
 
 
 def start_game():
