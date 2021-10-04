@@ -53,6 +53,9 @@ def place_the_wall_action(data, player):
     wall_input = input()
     if wall_input == 'back':
         choose_action_input(data, player)
+    elif wall_input == '':
+        wrong_action_message()
+        place_the_wall_action(data, player)
     else:
         coordinates_split = wall_input.split(' ')
         print(coordinates_split)
@@ -70,16 +73,12 @@ def place_the_wall_action(data, player):
                     if data['result']:
                         return data['data']
                     else:
-                        print(1)
                         wrong_action_message()
                         place_the_wall_action(data, player)
                 else:
-                    print(2)
                     wrong_action_message()
                     place_the_wall_action(data, player)
             except Exception as e:
-                print(3)
-                print(e)
                 wrong_action_message()
                 place_the_wall_action(data, player)
         else:
