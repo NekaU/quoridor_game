@@ -1,5 +1,5 @@
 from field import get_connected_points, field_preparation, fill_the_field, found_players, print_field
-from graph import create_nodes_from_field, update_connections_from_field, create_graph
+from graph import create_nodes_from_field, update_connections_from_field, create_graph, if_there_path_to_win
 from messages import choose_action_message, move_player_message, print_places_to_move, wrong_action_message, \
     place_the_wall_message, win_message
 from move import move_player, places_to_move
@@ -55,7 +55,7 @@ def place_the_wall_action(data, player):
         choose_action_input(data, player)
     elif wall_input == '':
         wrong_action_message()
-        place_the_wall_action(data, player)
+        return place_the_wall_action(data, player)
     else:
         coordinates_split = wall_input.split(' ')
         # print(coordinates_split)
@@ -69,9 +69,13 @@ def place_the_wall_action(data, player):
                 # print(check_if_it_wall(start_wall, end_wall))
                 if check_if_it_wall(start_wall, end_wall):
                     # print(data)
-                    data = set_wall(data, start_wall, end_wall)
-                    if data['result']:
-                        return data['data']
+                    answer = set_wall(data, start_wall, end_wall)
+                    if if_there_path_to_win(answer['data']):
+                        if answer['result']:
+                            return answer['data']
+                        else:
+                            wrong_action_message()
+                            return place_the_wall_action(data, player)
                     else:
                         wrong_action_message()
                         return place_the_wall_action(data, player)

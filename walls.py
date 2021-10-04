@@ -33,10 +33,10 @@ def set_wall(data, start_wall, end_wall):
         else:
             middle_wall.append(start_wall[0])
             middle_wall.append(start_wall[1]+1)
-    print(middle_wall)
-    print(answer['data']['field'][start_wall[0]][start_wall[1]])
-    print(answer['data']['field'][middle_wall[0]][middle_wall[1]])
-    print(answer['data']['field'][end_wall[0]][end_wall[1]])
+    # print(middle_wall)
+    # print(answer['data']['field'][start_wall[0]][start_wall[1]])
+    # print(answer['data']['field'][middle_wall[0]][middle_wall[1]])
+    # print(answer['data']['field'][end_wall[0]][end_wall[1]])
     if answer['data']['field'][start_wall[0]][start_wall[1]] == 3 and answer['data']['field'][end_wall[0]][end_wall[1]] == 3 \
             and answer['data']['field'][middle_wall[0]][middle_wall[1]] == 3:
         path_to_win = if_there_path_to_win(data)
@@ -45,7 +45,7 @@ def set_wall(data, start_wall, end_wall):
             answer['data']['field'][middle_wall[0]][middle_wall[1]] = 4
             answer['data']['field'][end_wall[0]][end_wall[1]] = 4
             answer["result"] = True
-            print(answer)
+            # print(answer)
     return answer
 
 
