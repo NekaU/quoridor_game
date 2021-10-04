@@ -58,17 +58,17 @@ def place_the_wall_action(data, player):
         place_the_wall_action(data, player)
     else:
         coordinates_split = wall_input.split(' ')
-        print(coordinates_split)
-        print(len(coordinates_split))
+        # print(coordinates_split)
+        # print(len(coordinates_split))
         if len(coordinates_split) == 4:
             try:
-                print([int(coordinate) for coordinate in coordinates_split])
+                # print([int(coordinate) for coordinate in coordinates_split])
                 coordinates = [int(coordinate) for coordinate in coordinates_split]
                 start_wall = [coordinates[0], coordinates[1]]
                 end_wall = [coordinates[2], coordinates[3]]
-                print(check_if_it_wall(start_wall, end_wall))
+                # print(check_if_it_wall(start_wall, end_wall))
                 if check_if_it_wall(start_wall, end_wall):
-                    print(data)
+                    # print(data)
                     data = set_wall(data, start_wall, end_wall)
                     if data['result']:
                         return data['data']

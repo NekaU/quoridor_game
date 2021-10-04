@@ -36,18 +36,18 @@ def places_to_move(field, player):
         if check_up(field, coordinates):
             places_to_move_list.append(up(coordinates))
     elif coordinates[0] == 0 and coordinates[1] == 0:
-        if check_up(field, coordinates):
-            places_to_move_list.append(up(coordinates))
+        if check_down(field, coordinates):
+            places_to_move_list.append(down(coordinates))
         if check_right(field, coordinates):
             places_to_move_list.append(right(coordinates))
     elif coordinates[0] == 0 and coordinates[1] == 16:
-        if check_up(field, coordinates):
-            places_to_move_list.append(up(coordinates))
+        if check_down(field, coordinates):
+            places_to_move_list.append(down(coordinates))
         if check_left(field, coordinates):
             places_to_move_list.append(left(coordinates))
     elif coordinates[0] == 16 and coordinates[1] == 0:
-        if check_down(field, coordinates):
-            places_to_move_list.append(down(coordinates))
+        if check_up(field, coordinates):
+            places_to_move_list.append(up(coordinates))
         if check_right(field, coordinates):
             places_to_move_list.append(right(coordinates))
     elif coordinates[0] == 16 and coordinates[1] == 16:
