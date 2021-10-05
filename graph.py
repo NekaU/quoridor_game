@@ -217,6 +217,8 @@ def if_there_path_to_win(data):
     endpoints_for_second = get_all_endpoint(data['graph'], data['nodes'][second[0]][second[1]])
     first_win_result = [i for i in endpoints_for_first if i in win_for_first]
     second_win_result = [i for i in endpoints_for_second if i in win_for_second]
+    print(f"\n 111111111111 {first_win_result} 111111111 \n")
+    print(f"\n 222222222222 {second_win_result} 2222222222 \n")
     if len(first_win_result) != 0 and len(second_win_result) != 0:
         return True
     else:
