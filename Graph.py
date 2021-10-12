@@ -1,12 +1,34 @@
-from field import field_preparation, fill_the_field, get_connected_points, found_players, backwards_calculating_point, \
-    calculate_point
+from Node import Node
 
 
-class Node:
+def create_graph(nodes):
+    list_of_nodes = []
+    for row in nodes:
+        for node in row:
+            list_of_nodes.append(node)
+    graph = Graph.create_from_nodes(list_of_nodes)
+    return graph
 
-    def __init__(self, data, indexloc=None):
-        self.data = data
-        self.index = indexloc
+
+def create_connections(graph, nodes):
+    for i in range(len(nodes)):
+        for j in range(len(nodes)):
+            if i != len(nodes) - 1 and j != len(nodes) - 1:
+                graph.connect(nodes[i][j], nodes[i + 1][j])
+                graph.connect(nodes[i][j], nodes[i][j + 1])
+            else:
+                if i == len(nodes) - 1 and j != len(nodes) - 1:
+                    graph.connect(nodes[i][j], nodes[i][j + 1])
+                if j == len(nodes) - 1 and i != len(nodes) - 1:
+                    graph.connect(nodes[i][j], nodes[i + 1][j])
+
+    return graph
+
+
+def update_connections_from_field(connected_points, graph, nodes):
+    for point in connected_points:
+        graph.connect(nodes[point[0][0]][point[0][1]], nodes[point[1][0]][point[1][1]])
+    return graph
 
 
 class Graph:
@@ -149,108 +171,14 @@ class Graph:
                     dist[node.index][1].append(node)
         return dist
 
+    def get_all_endpoint(self, node):
+        endpoints = []
+        for road in self.get_all_roads(self, node):
+            endpoints.append(road[1][-1])
+        return endpoints
 
-def create_graph(nodes):
-    list_of_nodes = []
-    for row in nodes:
-        for node in row:
-            list_of_nodes.append(node)
-    graph = Graph.create_from_nodes(list_of_nodes)
-    return graph
-
-
-def create_nodes_from_field(field):
-    nodes = []
-    i = 0
-
-    counter = 0
-    for row in field:
-        row_items = []
-        j = 0
-        for row_item in row:
-            if row_item == 0 or row_item == 1 or row_item == 2:
-                row_items.append(Node(f"{counter}"))
-                j += 1
-                counter += 1
-        if row[:-1] == row[1:]:
-            i += 1
-
-        nodes.append(row_items)
-    return [x for x in nodes if x != []]
-
-
-
-
-def print_nodes(nodes):
-    for row in nodes:
-        print([node.data for node in row])
-
-
-def create_connections(graph, nodes):
-    for i in range(len(nodes)):
-        for j in range(len(nodes)):
-            if i != len(nodes) - 1 and j != len(nodes) - 1:
-                graph.connect(nodes[i][j], nodes[i + 1][j])
-                graph.connect(nodes[i][j], nodes[i][j + 1])
-            else:
-                if i == len(nodes) - 1 and j != len(nodes) - 1:
-                    graph.connect(nodes[i][j], nodes[i][j + 1])
-                if j == len(nodes) - 1 and i != len(nodes) - 1:
-                    graph.connect(nodes[i][j], nodes[i + 1][j])
-
-    return graph
-
-
-def update_connections_from_field(connected_points, graph, nodes):
-    for point in connected_points:
-        graph.connect(nodes[point[0][0]][point[0][1]], nodes[point[1][0]][point[1][1]])
-    return graph
-
-
-def if_there_path_to_win(data):
-    players = found_players(data['field'])
-    first = [calculate_point(players['first'][0]), calculate_point(players['first'][1])]
-    second = [calculate_point(players['second'][0]), calculate_point(players['second'][1])]
-    win_for_first = [node.data for node in data['nodes'][0]]
-    win_for_second = [node.data for node in data['nodes'][-1]]
-    endpoints_for_first = get_all_endpoint(data['graph'], data['nodes'][first[0]][first[1]])
-    endpoints_for_second = get_all_endpoint(data['graph'], data['nodes'][second[0]][second[1]])
-    first_win_result = [i for i in endpoints_for_first if i in win_for_first]
-    second_win_result = [i for i in endpoints_for_second if i in win_for_second]
-    print(f"\n 111111111111 {first_win_result} 111111111 \n")
-    print(f"\n 222222222222 {second_win_result} 2222222222 \n")
-    if len(first_win_result) != 0 and len(second_win_result) != 0:
-        return True
-    else:
-        return False
-
-
-def get_all_roads(graph, start_node):
-    roads = []
-    for conn in [(weight, [n.data for n in node]) for (weight, node) in graph.dijkstra(start_node)]:
-        roads.append(conn)
-    return roads
-
-
-def get_all_endpoint(graph, node):
-    endpoints = []
-    for road in get_all_roads(graph, node):
-        endpoints.append(road[1][-1])
-    return endpoints
-
-
-# final_field = field_preparation(fill_the_field())
-# nodes_final = create_nodes_from_field(final_field)
-# graph_final = update_connections_from_field(get_connected_points(final_field), create_graph(nodes_final), nodes_final)
-# print_nodes(nodes)
-# graph.print_adj_mat()
-
-# print(if_there_path_to_win(final_field, graph_final, nodes_final))
-
-# print(graph.get_weight(nodes[0][4], nodes[8][4]))
-
-
-
-
-
-
+    def get_all_roads(self, start_node):
+        roads = []
+        for conn in [(weight, [n.data for n in node]) for (weight, node) in self.dijkstra(start_node)]:
+            roads.append(conn)
+        return roads
