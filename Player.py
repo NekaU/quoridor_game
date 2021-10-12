@@ -110,3 +110,9 @@ class Player:
 
     def check_left(self, field):
         return True if field[self.current_position.x][self.current_position.y - 1] == 3 else False
+
+
+# player = Player(True, 1)
+# print(player.walls_amount)
+# print(f"x-{player.current_position.x} y-{player.current_position.y}")
+# print(player.next_position)

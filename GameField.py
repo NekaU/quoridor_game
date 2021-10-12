@@ -87,3 +87,7 @@ class GameField:
         self.field[player.current_position.x][player.current_position.y] = 0
         self.field[player.next_position.x][player.next_position.y] = player.player_number
 
+
+# game_field = GameField()
+# for row in game_field.field:
+#     print(row)

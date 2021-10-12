@@ -63,3 +63,8 @@ class Wall:
             self.is_there_path_to_win = True
         else:
             self.is_there_path_to_win = False
+
+
+# wall = Wall(Coordinate(0, 7), Coordinate(2, 7))
+# print(f"x middle - {wall.coordinates_middle.x} y middle - {wall.coordinates_middle.y}")
+# print(wall.is_length_correct)
