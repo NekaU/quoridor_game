@@ -8,8 +8,8 @@ class Player:
         self.walls_amount = 10
         self.current_position = self.set_start_position()
         self.next_position = None
-        self.can_move_here = False
-        self.places_to_move = []
+        self.can_move_here = None
+        self.places_to_move = None
 
     def set_start_position(self):
         return Coordinate(16, 8) if self.player_number == 1 else Coordinate(0, 8)
@@ -110,3 +110,9 @@ class Player:
 
     def check_left(self, field):
         return True if field[self.current_position.x][self.current_position.y - 1] == 3 else False
+
+
+# player = Player(True, 1)
+# print(player.walls_amount)
+# print(f"x-{player.current_position.x} y-{player.current_position.y}")
+# print(player.next_position)

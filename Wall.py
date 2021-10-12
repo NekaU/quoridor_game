@@ -9,9 +9,9 @@ class Wall:
         self.coordinates_end = coordinates_end
         self.coordinates_middle = self.set_coordinates_middle()
         self.is_length_correct = self.if_length_correct()
-        self.between_two_pares = False
-        self.is_there_another_wall = True
-        self.is_there_path_to_win = False
+        self.between_two_pares = None
+        self.is_there_another_wall = None
+        self.is_there_path_to_win = None
 
     def set_coordinates_middle(self):
         if self.coordinates_start.y == self.coordinates_end.y:
@@ -63,3 +63,8 @@ class Wall:
             self.is_there_path_to_win = True
         else:
             self.is_there_path_to_win = False
+
+
+# wall = Wall(Coordinate(0, 7), Coordinate(2, 7))
+# print(f"x middle - {wall.coordinates_middle.x} y middle - {wall.coordinates_middle.y}")
+# print(wall.is_length_correct)
