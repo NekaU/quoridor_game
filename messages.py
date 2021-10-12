@@ -15,7 +15,7 @@ def print_places_to_move(places_to_move):
     print("Type 'back' for return")
 
 
-def wrong_action_message(e = None):
+def wrong_action_message(e=None):
     print("You entered wrong action")
     print(e)
 
@@ -25,13 +25,15 @@ def place_the_wall_message():
           "between moving hero or placing wall")
 
 
-def win_message(player):
+def win_message(player, field):
+    print_field(field)
     print(f"{player.player_number} player won. Do you want to play again(type yes for playing again).")
 
     # print(f"{win_status['player'].capitalize()} won. Do you want to play again(type yes for playing again).")
 
+
 def print_field(field):
-    num_horizontal = "     "
+    num_horizontal = "    "
     counter = 0
     for item in field[0]:
         if counter < 10:
@@ -72,3 +74,7 @@ def print_field(field):
             else:
                 print(f"{counter_2}  {row}")
                 counter_2 += 1
+
+
+def with_who_you_want_to_play():
+    print("Choose how to play:\n1)Play with human\n2)Play with bot\n3)Bot vs bot")

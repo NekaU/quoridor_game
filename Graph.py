@@ -156,7 +156,10 @@ class Graph:
             # Добавляет мин. расстояние узла до увиденного, убирает очередь
             # print(queue)
             # print(min_node)
-            queue.remove(min_node)
+            try:
+                queue.remove(min_node)
+            except Exception as y:
+                print(f"{y} +++++++++++")
             seen.add(min_node)
             # Получает все следующие перескоки
             connections = self.connections_from(min_node)
@@ -178,7 +181,10 @@ class Graph:
         return endpoints
 
     def get_all_roads(self, start_node):
-        roads = []
-        for conn in [(weight, [n.data for n in node]) for (weight, node) in self.dijkstra(start_node)]:
-            roads.append(conn)
+        try:
+            roads = []
+            for conn in [(weight, [n.data for n in node]) for (weight, node) in self.dijkstra(start_node)]:
+                roads.append(conn)
+        except Exception as y:
+            print(f"{y} +++++++++++")
         return roads

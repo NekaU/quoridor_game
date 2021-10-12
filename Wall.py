@@ -54,12 +54,17 @@ class Wall:
     def if_there_path_to_win(self, game_field, player1, player2):
         first = Coordinate(calculate_point(player1.current_position.x), calculate_point(player1.current_position.y))
         second = Coordinate(calculate_point(player2.current_position.x), calculate_point(player2.current_position.y))
+
         win_for_first = [node.data for node in game_field.nodes[0]]
+
         win_for_second = [node.data for node in game_field.nodes[-1]]
+
         graph = update_connections_from_field(get_connected_points(game_field.field), create_graph(game_field.nodes),
                                               game_field.nodes)
         endpoints_for_first = graph.get_all_endpoint(game_field.nodes[first.x][first.y])
+
         endpoints_for_second = graph.get_all_endpoint(game_field.nodes[second.x][second.y])
+
         first_win_result = [i for i in endpoints_for_first if i in win_for_first]
         second_win_result = [i for i in endpoints_for_second if i in win_for_second]
         if len(first_win_result) != 0 and len(second_win_result) != 0:
