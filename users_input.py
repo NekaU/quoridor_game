@@ -27,3 +27,7 @@ def enter(player, types):
 
 def who():
     return input()
+
+
+def play():
+    return input()
