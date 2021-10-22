@@ -38,7 +38,8 @@ def startGame():
     # print(playerOne.current_position.x, playerOne.current_position.y)
     # print(playerTwo.current_position.x, playerTwo.current_position.y)
     messages.win_message(playerOne if playerOne.isWin() else playerTwo, game_field.field)
-    if play() == "yes" or play() == "1":
+    playAgain = play()
+    if playAgain == "yes" or playAgain == "1":
         startGame()
 
 
