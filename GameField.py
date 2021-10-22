@@ -31,7 +31,7 @@ def get_connected_points(field):
                     if field[i + 1][j] == 3:
                         connected_points.append(
                             ((calculate_point(i), calculate_point(j)), (calculate_point(i + 2), calculate_point(j))))
-    # print(connected_points)
+    # # print(connected_points)
     return connected_points
 
 
@@ -97,8 +97,8 @@ class GameField:
 
             finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
             path, runs = finder.find_path(start, end, grid)
-            # print('operations:', runs, 'path length:', len(path)) #Тестовый вывод
-            # print(grid.grid_str(path=path, start=start, end=end))
+            # # print('operations:', runs, 'path length:', len(path)) #Тестовый вывод
+            # # print(grid.grid_str(path=path, start=start, end=end))
             if len(path) >= 2:
                 fpWay = True
                 break
@@ -109,8 +109,8 @@ class GameField:
 
             finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
             path, runs = finder.find_path(start, end, grid)
-            # print('operations:', runs, 'path length:', len(path)) #Тестовый вывод
-            # print(grid.grid_str(path=path, start=start, end=end))
+            # # print('operations:', runs, 'path length:', len(path)) #Тестовый вывод
+            # # print(grid.grid_str(path=path, start=start, end=end))
             if len(path) >= 2:
                 spWay = True
                 break
@@ -150,11 +150,11 @@ class GameField:
         player.current_position = player.next_position
 
 # game_field = GameField()
-# messages.print_field(game_field.field)
+# messages.# print_field(game_field.field)
 # for row in game_field.field:
-#     print(row)
+#     # print(row)
 # player = Player(True, 1)
 # field = GameField()
 # for i in field.field:
-#     print(i)
-# print(field.pathfinder([player, player]))
+#     # print(i)
+# # print(field.pathfinder([player, player]))

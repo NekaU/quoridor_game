@@ -86,5 +86,5 @@ class Wall:
 
 
 # wall = Wall(Coordinate(0, 7), Coordinate(2, 7))
-# print(f"x middle - {wall.coordinates_middle.x} y middle - {wall.coordinates_middle.y}")
-# print(wall.is_length_correct)
+# # print(f"x middle - {wall.coordinates_middle.x} y middle - {wall.coordinates_middle.y}")
+# # print(wall.is_length_correct)
