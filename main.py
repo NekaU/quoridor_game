@@ -28,6 +28,7 @@ def startGame():
     while not playerOne.isWin() and not playerTwo.isWin():
         messages.print_field(game_field.field)
         game(list_of_players[counter], game_field, list_of_players)
+        game_field.graph = game_field.set_graph()
         moves += 1
         counter = 1 if counter == 0 else 0
         clear_console()

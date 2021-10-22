@@ -55,7 +55,7 @@ class Wall:
         game_field.graph.cleanup()
         tempField = copy.deepcopy(game_field)
         tempField.set_wall(wall)
-        tempField.set_graph()
+        tempField.graph = tempField.set_graph()
         if tempField.pathfinder([player1, player2]):
             del tempField
             return True

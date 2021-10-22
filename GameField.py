@@ -82,8 +82,7 @@ class GameField:
         return field_preparation(fill_the_field())
 
     def set_graph(self):
-        q = self.graphPrepare(self.field)
-        grid = Grid(matrix=q)
+        grid = Grid(matrix=self.graphPrepare(self.field))
         return grid
 
     def pathfinder(self, players):  # players - список игроков, field - экземпляр класса GameField
@@ -93,8 +92,8 @@ class GameField:
 
         for win in players[0].forWin:
             grid.cleanup()
-            start = grid.node(players[0].current_position.x, players[0].current_position.y)
-            end = grid.node(win[0], win[1])
+            start = grid.node(players[0].current_position.y, players[0].current_position.x)
+            end = grid.node(win[1], win[0])
 
             finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
             path, runs = finder.find_path(start, end, grid)
@@ -103,10 +102,10 @@ class GameField:
             if len(path) >= 2:
                 fpWay = True
                 break
-        for win in players[0].forWin:
+        for win in players[1].forWin:
             grid.cleanup()
-            start = grid.node(players[0].current_position.x, players[0].current_position.y)
-            end = grid.node(win[0], win[1])
+            start = grid.node(players[1].current_position.y, players[1].current_position.x)
+            end = grid.node(win[1], win[0])
 
             finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
             path, runs = finder.find_path(start, end, grid)
@@ -115,18 +114,6 @@ class GameField:
             if len(path) >= 2:
                 spWay = True
                 break
-        # for win2 in players[1].forWin:
-        #     grid2.cleanup()
-        #     start2 = grid2.node(players[1].current_position.x, players[1].current_position.y)
-        #     end2 = grid2.node(win2[0], win2[1])
-        #
-        #     finder2 = AStarFinder(diagonal_movement=DiagonalMovement.never)
-        #     path2, runs2 = finder2.find_path(start2, end2, grid2)
-        #     # print('operations:', runs2, 'path length:', len(path2)) #Тестовый вывод
-        #     # print(grid2.grid_str(path=path2, start=start2, end=end2))
-        #     if len(path2) >= 2:
-        #         spWay = True
-        #         break
         if fpWay and spWay:
             return True
         else:
